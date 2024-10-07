@@ -17,6 +17,9 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        return authenticationService.authenticate(loginRequest);
+        System.out.println("Received login request: " + loginRequest);
+        ResponseEntity<?> response = authenticationService.authenticate(loginRequest);
+        System.out.println("Sending response: " + response);
+        return response;
     }
 }

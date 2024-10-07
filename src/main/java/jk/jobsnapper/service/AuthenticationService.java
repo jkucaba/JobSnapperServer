@@ -20,6 +20,7 @@ public class AuthenticationService {
     }
 
     public ResponseEntity<?> authenticate(LoginRequest loginRequest) {
+        System.out.println("Authenticating user with email: " + loginRequest.getEmail() + " and password: " + loginRequest.getPassword());
         User user = userRepository.findByEmail(loginRequest.getEmail());
         if (user != null && user.getPassword().equals(loginRequest.getPassword())) {
             String token = jwtUtil.generateToken(loginRequest.getEmail());
