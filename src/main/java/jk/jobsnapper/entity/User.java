@@ -3,6 +3,8 @@ package jk.jobsnapper.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,7 +15,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long iduser;
-
     @Column(name = "firstName")
     private String firstName;
     @Column(name = "lastName")
