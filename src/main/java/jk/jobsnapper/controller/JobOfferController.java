@@ -29,6 +29,11 @@ public class JobOfferController {
         JobOfferDto jobOfferDto = jobOfferService.getJobOfferById(jobOfferId);
         return new ResponseEntity<>(jobOfferDto, HttpStatus.OK);
     }
+    @GetMapping("/my/{id}")
+    public ResponseEntity<List<JobOfferDto>> getJobOfferByUserId(@PathVariable("id") Long userId){
+        List<JobOfferDto> jobOffers = jobOfferService.getJobOfferByUserId(userId);
+        return ResponseEntity.ok(jobOffers);
+    }
 
     //Build Get all JobOffers REST API
     @GetMapping

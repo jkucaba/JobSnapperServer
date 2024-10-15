@@ -30,17 +30,17 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-/*                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
-                );*/
                 .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll()
+                );
+/*                .authorizeHttpRequests(auth -> auth
                         .requestMatchers(new AntPathRequestMatcher("/api/login")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/publicKey")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/admin/**")).access(RoleBasedAuthorizationManager.hasRole("admin"))
                         .requestMatchers(new AntPathRequestMatcher("/user/**")).access(RoleBasedAuthorizationManager.hasRole("pracownik"))
                         .requestMatchers(new AntPathRequestMatcher("/employer/**")).access(RoleBasedAuthorizationManager.hasRole("employer"))
                         .anyRequest().authenticated()
-                );
+                );*/
         return http.build();
     }
 

@@ -8,6 +8,7 @@ public interface JobOfferService {
     JobOfferDto createJobOffer(JobOfferDto jobOfferDto);
 
     JobOfferDto getJobOfferById(Long job_offer_id);
+    List<JobOfferDto> getJobOfferByUserId(Long idUser);
 
     List<JobOfferDto> getAllJobOffers();
 

@@ -31,6 +31,18 @@ public class JobOfferServiceImpl implements JobOfferService {
     }
 
     @Override
+    public List<JobOfferDto> getJobOfferByUserId(Long idUser) {
+        try {
+            List<JobOffer> jobOffers = jobOfferRepository.findJobOfferByIdUser(idUser);
+            return jobOffers.stream().map((jobOffer) -> JobOfferMapper.maptoJobOfferDto(jobOffer))
+                    .collect(java.util.stream.Collectors.toList());
+        }catch (Exception e) {
+            throw new ResourceNotFoundException("Job Offer not found for this id :: " + idUser);
+        }
+
+    }
+
+    @Override
     public List<JobOfferDto> getAllJobOffers() {
         List<JobOffer> jobOffers = jobOfferRepository.findAll();
         return jobOffers.stream().map((jobOffer) -> JobOfferMapper.maptoJobOfferDto(jobOffer))
