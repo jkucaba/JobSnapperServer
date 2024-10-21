@@ -24,4 +24,6 @@ public class JobOfferDto {
     private String status;
     private String postedBy;
     private String postedDate;
+    private int applicantsNumber;
+    private int acceptedApplicants;
 }

@@ -66,6 +66,8 @@ public class JobOfferServiceImpl implements JobOfferService {
         jobOffer.setStatus(UpdatedJobOffer.getStatus());
         jobOffer.setPostedBy(UpdatedJobOffer.getPostedBy());
         jobOffer.setPostedDate(UpdatedJobOffer.getPostedDate());
+        jobOffer.setApplicantsNumber(UpdatedJobOffer.getApplicantsNumber());
+        jobOffer.setAcceptedApplicants(UpdatedJobOffer.getAcceptedApplicants());
 
         JobOffer updatedJobOfferObj = jobOfferRepository.save(jobOffer);
         return JobOfferMapper.maptoJobOfferDto(updatedJobOfferObj);

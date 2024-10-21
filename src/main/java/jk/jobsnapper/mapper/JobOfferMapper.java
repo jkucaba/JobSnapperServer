@@ -19,7 +19,9 @@ public class JobOfferMapper {
                 jobOffer.getCategory(),
                 jobOffer.getStatus(),
                 jobOffer.getPostedBy(),
-                jobOffer.getPostedDate()
+                jobOffer.getPostedDate(),
+                jobOffer.getApplicantsNumber(),
+                jobOffer.getAcceptedApplicants()
         );
     }
 
@@ -38,7 +40,9 @@ public class JobOfferMapper {
                 JobOfferDto.getCategory(),
                 JobOfferDto.getStatus(),
                 JobOfferDto.getPostedBy(),
-                JobOfferDto.getPostedDate()
+                JobOfferDto.getPostedDate(),
+                JobOfferDto.getApplicantsNumber(),
+                JobOfferDto.getAcceptedApplicants()
         );
     }
 }

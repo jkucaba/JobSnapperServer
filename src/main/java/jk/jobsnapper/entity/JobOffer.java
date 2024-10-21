@@ -39,5 +39,8 @@ public class JobOffer {
     private String postedBy;
     @Column(name = "postedDate")
     private String postedDate;
-
+    @Column(name = "applicantsNumber")
+    private int applicantsNumber;
+    @Column(name = "acceptedApplicants")
+    private int acceptedApplicants;
 }
