@@ -12,6 +12,8 @@ public interface UserService {
     List<UserDto> getAllUsers();
 
     UserDto updateUsers(Long userId, UserDto updatedUser);
+    UserDto getUserByEmail(String email);
+    List<UserDto> getAllNonAdminUsers();
 
     void deleteUser(Long userId);
 }

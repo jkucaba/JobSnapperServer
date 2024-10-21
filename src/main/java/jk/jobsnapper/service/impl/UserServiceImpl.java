@@ -30,6 +30,22 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
         return UserMapper.maptoUserDto(user);
     }
+    @Override
+    public UserDto getUserByEmail(String email) throws ResourceNotFoundException {
+        try {
+            User user = userRepository.findByEmail(email);
+            return UserMapper.maptoUserDto(user);
+        } catch (Exception e) {
+              throw new ResourceNotFoundException("User not found for this id :: " + email);
+        }
+    }
+    @Override
+    public List<UserDto> getAllNonAdminUsers() {
+        return userRepository.findAll().stream()
+                .filter(user -> !user.getRole().equals("admin"))
+                .map(user -> new UserDto(user))
+                .collect(Collectors.toList());
+    }
 
     @Override
     public List<UserDto> getAllUsers() {
@@ -55,7 +71,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Long employeeId) {
-
+    public void deleteUser(Long userId) {
+        userRepository.deleteById(userId);
     }
 }

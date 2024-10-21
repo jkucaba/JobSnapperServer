@@ -12,7 +12,7 @@ import java.util.List;
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/admin/users")
 public class UserController {
     private UserService userService;
 
@@ -30,10 +30,17 @@ public class UserController {
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
+    //Build Get Employee by email REST API
+    @GetMapping("/{email}")
+    public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email){
+        UserDto userDto = userService.getUserByEmail(email);
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
+    }
+
     //Build Get all Employees REST API
     @GetMapping
     public ResponseEntity<List<UserDto>> getAllUsers(){
-        List<UserDto> employees = userService.getAllUsers();
+        List<UserDto> employees = userService.getAllNonAdminUsers();
         return ResponseEntity.ok(employees);
     }
 

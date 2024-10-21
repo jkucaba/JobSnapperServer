@@ -36,7 +36,7 @@ public class JobOfferController {
     }
 
     //Build Get all JobOffers REST API
-    @GetMapping
+    @GetMapping(value = {"/", "/employee/joboffers", "/admin/joboffers"})
     public ResponseEntity<List<JobOfferDto>> getAllJobOffers(){
         List<JobOfferDto> jobOffers = jobOfferService.getAllJobOffers();
         return ResponseEntity.ok(jobOffers);
