@@ -1,6 +1,5 @@
 package jk.jobsnapper.dto;
 
-import jakarta.persistence.Column;
 import jk.jobsnapper.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class UserWithoutImageDto {
     private Long iduser;
     private String firstName;
     private String lastName;
@@ -23,8 +22,8 @@ public class UserDto {
     private int phone;
     private String abilities;
     private String profile;
-    private byte[] profileImage;
-    public UserDto(User user) {
+
+    public UserWithoutImageDto(User user) {
         this.iduser = user.getIduser();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
@@ -36,10 +35,5 @@ public class UserDto {
         this.phone = user.getPhone();
         this.abilities = user.getAbilities();
         this.profile = user.getProfile();
-        if(user.getProfileImage() != null){
-            this.profileImage = user.getProfileImage();
-        } else {
-            this.profileImage = new byte[0];
-        }
     }
 }

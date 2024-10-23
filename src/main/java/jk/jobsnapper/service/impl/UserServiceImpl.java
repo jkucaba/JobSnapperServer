@@ -1,6 +1,7 @@
 package jk.jobsnapper.service.impl;
 
 import jk.jobsnapper.dto.UserDto;
+import jk.jobsnapper.dto.UserWithoutImageDto;
 import jk.jobsnapper.entity.User;
 import jk.jobsnapper.exception.ResourceNotFoundException;
 import jk.jobsnapper.mapper.UserMapper;
@@ -8,7 +9,9 @@ import jk.jobsnapper.repository.UserRepository;
 import jk.jobsnapper.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,10 +43,10 @@ public class UserServiceImpl implements UserService {
         }
     }
     @Override
-    public List<UserDto> getAllNonAdminUsers() {
+    public List<UserWithoutImageDto> getAllNonAdminUsers() {
         return userRepository.findAll().stream()
                 .filter(user -> !user.getRole().equals("admin"))
-                .map(user -> new UserDto(user))
+                .map(user -> new UserWithoutImageDto(user))
                 .collect(Collectors.toList());
     }
 
@@ -68,6 +71,19 @@ public class UserServiceImpl implements UserService {
 
         User updatedUserObj = userRepository.save(user);
         return UserMapper.maptoUserDto(updatedUserObj);
+    }
+    public void saveProfileImage(Long userId, MultipartFile file) throws IOException {
+        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        user.setProfileImage(file.getBytes());
+        userRepository.save(user);
+    }
+    public byte[] getProfileImage(Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user != null) {
+            return user.getProfileImage();
+        } else {
+            return null;
+        }
     }
 
     @Override

@@ -32,6 +32,7 @@ public class JwtUtil {
 
     public String generateToken(String email) {
         User user = userRepository.findByEmail(email);
+        String phone = String.valueOf(user.getPhone());
         return Jwts.builder()
                 .setSubject(email)
                 .claim("iduser", user.getIduser())
@@ -40,6 +41,10 @@ public class JwtUtil {
                 .claim("email", user.getEmail())
                 .claim("birthday", user.getBirthday())
                 .claim("role", user.getRole())
+                .claim("sex", user.getSex())
+                .claim("phone", phone)
+                .claim("abilities", user.getAbilities())
+                .claim("profile", user.getProfile())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 3600000)) // 1 hour expiration
                 .signWith(keyPair.getPrivate(), SignatureAlgorithm.RS256)

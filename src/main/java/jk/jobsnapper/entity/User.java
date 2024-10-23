@@ -27,4 +27,15 @@ public class User {
     private String birthday;
     @Column(name = "role")
     private String role;
+    @Column(name = "sex")
+    private String sex;
+    @Column(name = "phone")
+    private int phone;
+    @Column(name = "abilities")
+    private String abilities;
+    @Column(name = "profile")
+    private String profile;
+    @Lob
+    @Column(name = "profile_image", columnDefinition = "LONGBLOB")
+    private byte[] profileImage;
 }

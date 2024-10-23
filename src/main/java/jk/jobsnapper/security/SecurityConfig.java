@@ -36,6 +36,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(new AntPathRequestMatcher("/api/login")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/publicKey")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/admin/users/{id}/profile-image")).access(RoleBasedAuthorizationManager.hasRole("pracownik"))
                         .requestMatchers(new AntPathRequestMatcher("/admin/**")).access(RoleBasedAuthorizationManager.hasRole("admin"))
                         .requestMatchers(new AntPathRequestMatcher("/user/**")).access(RoleBasedAuthorizationManager.hasRole("pracownik"))
                         .requestMatchers(new AntPathRequestMatcher("/employer/**")).access(RoleBasedAuthorizationManager.hasRole("employer"))

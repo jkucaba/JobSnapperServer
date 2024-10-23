@@ -1,6 +1,7 @@
 package jk.jobsnapper.mapper;
 
 import jk.jobsnapper.dto.UserDto;
+import jk.jobsnapper.dto.UserWithoutImageDto;
 import jk.jobsnapper.entity.User;
 
 public class UserMapper {
@@ -12,7 +13,12 @@ public class UserMapper {
                 user.getEmail(),
                 user.getPassword(),
                 user.getBirthday(),
-                user.getRole()
+                user.getRole(),
+                user.getSex(),
+                user.getPhone(),
+                user.getAbilities(),
+                user.getProfile(),
+                user.getProfileImage()
         );
     }
 
@@ -24,7 +30,27 @@ public class UserMapper {
                 userDto.getEmail(),
                 userDto.getPassword(),
                 userDto.getBirthday(),
-                userDto.getRole()
+                userDto.getRole(),
+                userDto.getSex(),
+                userDto.getPhone(),
+                userDto.getAbilities(),
+                userDto.getProfile(),
+                userDto.getProfileImage()
+        );
+    }
+    public static UserWithoutImageDto mapToUserWithoutImageDto(User user) {
+        return new UserWithoutImageDto(
+                user.getIduser(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getBirthday(),
+                user.getRole(),
+                user.getSex(),
+                user.getPhone(),
+                user.getAbilities(),
+                user.getProfile()
         );
     }
 }
